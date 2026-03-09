@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
         closeBtn.addEventListener('click', closeCulturalProductsModal);
         console.log('Close button click event bound successfully');
     }
+    
+    // 初始化所有图表
+    initCharts();
 });
 
 // 实时更新日期时间
@@ -93,153 +96,170 @@ const chartDefaults = {
     }
 };
 
-// IP授权收入金字塔图
-const ipRevenueCtx = document.getElementById('ipRevenueChart').getContext('2d');
-const ipRevenueChart = new Chart(ipRevenueCtx, {
-    type: 'bar',
-    data: {
-        labels: ['IP5', 'IP4', 'IP3', 'IP2', 'IP1'],
-        datasets: [{
-            label: '授权收入 (万元)',
-            data: [50, 120, 200, 350, 500],
-            backgroundColor: 'rgba(100, 181, 246, 0.7)',
-            borderColor: 'rgba(100, 181, 246, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        ...chartDefaults,
-        indexAxis: 'y'
+// 初始化所有图表
+function initCharts() {
+    // IP授权收入金字塔图
+    const ipRevenueCtx = document.getElementById('ipRevenueChart').getContext('2d');
+    if (ipRevenueCtx) {
+        new Chart(ipRevenueCtx, {
+            type: 'bar',
+            data: {
+                labels: ['IP5', 'IP4', 'IP3', 'IP2', 'IP1'],
+                datasets: [{
+                    label: '授权收入 (万元)',
+                    data: [50, 120, 200, 350, 500],
+                    backgroundColor: 'rgba(100, 181, 246, 0.7)',
+                    borderColor: 'rgba(100, 181, 246, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...chartDefaults,
+                indexAxis: 'y'
+            }
+        });
     }
-});
 
-// IP传播影响力饼图
-const ipInfluenceCtx = document.getElementById('ipInfluenceChart').getContext('2d');
-const ipInfluenceChart = new Chart(ipInfluenceCtx, {
-    type: 'pie',
-    data: {
-        labels: ['社交媒体', '短视频', '新闻报道', '线下活动', '其他'],
-        datasets: [{
-            data: [35, 25, 20, 15, 5],
-            backgroundColor: [
-                'rgba(100, 181, 246, 0.7)',
-                'rgba(76, 175, 80, 0.7)',
-                'rgba(255, 193, 7, 0.7)',
-                'rgba(244, 67, 54, 0.7)',
-                'rgba(156, 39, 176, 0.7)'
-            ],
-            borderColor: [
-                'rgba(100, 181, 246, 1)',
-                'rgba(76, 175, 80, 1)',
-                'rgba(255, 193, 7, 1)',
-                'rgba(244, 67, 54, 1)',
-                'rgba(156, 39, 176, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: chartDefaults
-});
-
-// 文创销售排名top5横向柱形图
-const culturalProductsCtx = document.getElementById('culturalProductsChart').getContext('2d');
-const culturalProductsChart = new Chart(culturalProductsCtx, {
-    type: 'bar',
-    data: {
-        labels: ['IP1产品A', 'IP2产品B', 'IP3产品C', 'IP4产品D', 'IP5产品E'],
-        datasets: [{
-            label: '销售个数',
-            data: [1820, 1250, 980, 820, 750],
-            backgroundColor: 'rgba(76, 175, 80, 0.7)',
-            borderColor: 'rgba(76, 175, 80, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        ...chartDefaults,
-        indexAxis: 'y'
+    // IP传播影响力饼图
+    const ipInfluenceCtx = document.getElementById('ipInfluenceChart').getContext('2d');
+    if (ipInfluenceCtx) {
+        new Chart(ipInfluenceCtx, {
+            type: 'pie',
+            data: {
+                labels: ['社交媒体', '短视频', '新闻报道', '线下活动', '其他'],
+                datasets: [{
+                    data: [35, 25, 20, 15, 5],
+                    backgroundColor: [
+                        'rgba(100, 181, 246, 0.7)',
+                        'rgba(76, 175, 80, 0.7)',
+                        'rgba(255, 193, 7, 0.7)',
+                        'rgba(244, 67, 54, 0.7)',
+                        'rgba(156, 39, 176, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(100, 181, 246, 1)',
+                        'rgba(76, 175, 80, 1)',
+                        'rgba(255, 193, 7, 1)',
+                        'rgba(244, 67, 54, 1)',
+                        'rgba(156, 39, 176, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: chartDefaults
+        });
     }
-});
 
-// 重点文物监测柱形图
-const culturalRelicsCtx = document.getElementById('culturalRelicsChart').getContext('2d');
-const culturalRelicsChart = new Chart(culturalRelicsCtx, {
-    type: 'bar',
-    data: {
-        labels: ['文物1', '文物2', '文物3', '文物4', '文物5'],
-        datasets: [{
-            label: '监测指数',
-            data: [95, 88, 92, 78, 90],
-            backgroundColor: 'rgba(255, 193, 7, 0.7)',
-            borderColor: 'rgba(255, 193, 7, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: chartDefaults
-});
+    // 文创销售排名top5横向柱形图
+    const culturalProductsCtx = document.getElementById('culturalProductsChart').getContext('2d');
+    if (culturalProductsCtx) {
+        new Chart(culturalProductsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['IP1产品A', 'IP2产品B', 'IP3产品C', 'IP4产品D', 'IP5产品E'],
+                datasets: [{
+                    label: '销售个数',
+                    data: [1820, 1250, 980, 820, 750],
+                    backgroundColor: 'rgba(76, 175, 80, 0.7)',
+                    borderColor: 'rgba(76, 175, 80, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...chartDefaults,
+                indexAxis: 'y'
+            }
+        });
+    }
 
-// 客流统计分析柱形图
-const visitorCtx = document.getElementById('visitorChart').getContext('2d');
-const visitorChart = new Chart(visitorCtx, {
-    type: 'bar',
-    data: {
-        labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-        datasets: [{
-            label: '日均人数',
-            data: [8500, 9200, 8800, 10500, 12800, 18500, 16200],
-            backgroundColor: 'rgba(100, 181, 246, 0.7)',
-            borderColor: 'rgba(100, 181, 246, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: chartDefaults
-});
+    // 重点文物监测柱形图
+    const culturalRelicsCtx = document.getElementById('culturalRelicsChart').getContext('2d');
+    if (culturalRelicsCtx) {
+        new Chart(culturalRelicsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['文物1', '文物2', '文物3', '文物4', '文物5'],
+                datasets: [{
+                    label: '监测指数',
+                    data: [95, 88, 92, 78, 90],
+                    backgroundColor: 'rgba(255, 193, 7, 0.7)',
+                    borderColor: 'rgba(255, 193, 7, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: chartDefaults
+        });
+    }
 
-// 消费分析图表
-const consumptionCtx = document.getElementById('consumptionChart').getContext('2d');
-const consumptionChart = new Chart(consumptionCtx, {
-    type: 'line',
-    data: {
-        labels: ['1月', '2月', '3月', '4月', '5月', '6月'],
-        datasets: [{
-            label: '消费金额 (万元)',
-            data: [120, 150, 180, 220, 280, 350],
-            borderColor: 'rgba(76, 175, 80, 1)',
-            backgroundColor: 'rgba(76, 175, 80, 0.1)',
-            tension: 0.4,
-            fill: true
-        }]
-    },
-    options: chartDefaults
-});
+    // 客流统计分析柱形图
+    const visitorCtx = document.getElementById('visitorChart').getContext('2d');
+    if (visitorCtx) {
+        new Chart(visitorCtx, {
+            type: 'bar',
+            data: {
+                labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                datasets: [{
+                    label: '日均人数',
+                    data: [8500, 9200, 8800, 10500, 12800, 18500, 16200],
+                    backgroundColor: 'rgba(100, 181, 246, 0.7)',
+                    borderColor: 'rgba(100, 181, 246, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: chartDefaults
+        });
+    }
 
-// 数字文创产品图表
-const digitalProductsCtx = document.getElementById('digitalProductsChart').getContext('2d');
-const digitalProductsChart = new Chart(digitalProductsCtx, {
-    type: 'pie',
-    data: {
-        labels: ['数字藏品', '虚拟体验', '在线课程', '数字出版物', '其他'],
-        datasets: [{
-            data: [40, 25, 15, 12, 8],
-            backgroundColor: [
-                'rgba(100, 181, 246, 0.7)',
-                'rgba(76, 175, 80, 0.7)',
-                'rgba(255, 193, 7, 0.7)',
-                'rgba(244, 67, 54, 0.7)',
-                'rgba(156, 39, 176, 0.7)'
-            ],
-            borderColor: [
-                'rgba(100, 181, 246, 1)',
-                'rgba(76, 175, 80, 1)',
-                'rgba(255, 193, 7, 1)',
-                'rgba(244, 67, 54, 1)',
-                'rgba(156, 39, 176, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: chartDefaults
-});
+    // 消费分析图表
+    const consumptionCtx = document.getElementById('consumptionChart').getContext('2d');
+    if (consumptionCtx) {
+        new Chart(consumptionCtx, {
+            type: 'line',
+            data: {
+                labels: ['1月', '2月', '3月', '4月', '5月', '6月'],
+                datasets: [{
+                    label: '消费金额 (万元)',
+                    data: [120, 150, 180, 220, 280, 350],
+                    borderColor: 'rgba(76, 175, 80, 1)',
+                    backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: chartDefaults
+        });
+    }
+
+    // 数字文创产品图表
+    const digitalProductsCtx = document.getElementById('digitalProductsChart').getContext('2d');
+    if (digitalProductsCtx) {
+        new Chart(digitalProductsCtx, {
+            type: 'pie',
+            data: {
+                labels: ['数字藏品', '虚拟体验', '在线课程', '数字出版物', '其他'],
+                datasets: [{
+                    data: [40, 25, 15, 12, 8],
+                    backgroundColor: [
+                        'rgba(100, 181, 246, 0.7)',
+                        'rgba(76, 175, 80, 0.7)',
+                        'rgba(255, 193, 7, 0.7)',
+                        'rgba(244, 67, 54, 0.7)',
+                        'rgba(156, 39, 176, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(100, 181, 246, 1)',
+                        'rgba(76, 175, 80, 1)',
+                        'rgba(255, 193, 7, 1)',
+                        'rgba(244, 67, 54, 1)',
+                        'rgba(156, 39, 176, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: chartDefaults
+        });
+    }
+}
 
 // 文创产品销量双轴图表
 function initCulturalProductsDualChart() {

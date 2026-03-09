@@ -222,7 +222,7 @@ body {
 .chart-container {
     flex: 1;
     position: relative;
-    height: 180px;
+    height: 220px;
     margin-bottom: 10px;
 }
 
