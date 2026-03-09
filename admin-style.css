@@ -48,6 +48,24 @@ body {
     font-size: 14px;
 }
 
+.login-hint {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #0a1929;
+}
+
+.login-hint p {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.login-hint p:last-child {
+    margin-bottom: 0;
+}
+
 .form-group {
     margin-bottom: 20px;
 }
