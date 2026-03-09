@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文创产品管理 - 数字文旅驾驶舱</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>数字文旅驾驶舱</h3>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="dashboard.html">专题看板</a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin.html">核心指标管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="ip-management.html">IP效能管理</a>
+                </div>
+                <div class="nav-item active">
+                    <a href="cultural-products-management.html">文创产品管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultural-relics-management.html">重点文物管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="smart-business-management.html">智慧商圈管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="visitor-management.html">客流统计管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="consumption-management.html">消费分析管理</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 顶部导航栏 -->
+            <div class="top-nav">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <h2>文创产品管理</h2>
+                    <a href="index.html" class="btn btn-primary">查看驾驶舱</a>
+                </div>
+                <div class="user-info">
+                    <span>管理员</span>
+                    <button class="logout-btn">登出</button>
+                </div>
+            </div>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- 文创产品销售管理 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>文创产品销售管理</h3>
+                        <button class="btn btn-primary" data-modal="addCulturalProductModal">添加文创产品</button>
+                    </div>
+                    <table class="data-table" id="culturalProductsTable">
+                        <thead>
+                            <tr>
+                                <th>文创名称</th>
+                                <th>所属IP</th>
+                                <th>销售个数</th>
+                                <th>购买人数</th>
+                                <th>销售额(元)</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IP1产品A</td>
+                                <td>IP1</td>
+                                <td>1820</td>
+                                <td>1200</td>
+                                <td>¥25,000</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editCulturalProductModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IP2产品B</td>
+                                <td>IP2</td>
+                                <td>1250</td>
+                                <td>980</td>
+                                <td>¥18,000</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editCulturalProductModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IP3产品C</td>
+                                <td>IP3</td>
+                                <td>980</td>
+                                <td>850</td>
+                                <td>¥12,000</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editCulturalProductModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IP4产品D</td>
+                                <td>IP4</td>
+                                <td>820</td>
+                                <td>720</td>
+                                <td>¥9,500</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editCulturalProductModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IP5产品E</td>
+                                <td>IP5</td>
+                                <td>750</td>
+                                <td>680</td>
+                                <td>¥8,200</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editCulturalProductModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 添加文创产品模态框 -->
+    <div class="modal" id="addCulturalProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加文创产品</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="productName">文创名称</label>
+                    <input type="text" id="productName" name="productName" required placeholder="请输入文创名称">
+                </div>
+                <div class="form-group">
+                    <label for="productIp">所属IP</label>
+                    <input type="text" id="productIp" name="productIp" required placeholder="请输入所属IP">
+                </div>
+                <div class="form-group">
+                    <label for="salesCount">销售个数</label>
+                    <input type="number" id="salesCount" name="salesCount" required placeholder="请输入销售个数">
+                </div>
+                <div class="form-group">
+                    <label for="buyerCount">购买人数</label>
+                    <input type="number" id="buyerCount" name="buyerCount" required placeholder="请输入购买人数">
+                </div>
+                <div class="form-group">
+                    <label for="salesAmount">销售额</label>
+                    <input type="number" id="salesAmount" name="salesAmount" required placeholder="请输入销售额">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 编辑文创产品模态框 -->
+    <div class="modal" id="editCulturalProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑文创产品</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="editProductName">文创名称</label>
+                    <input type="text" id="editProductName" name="editProductName" required value="IP1产品A">
+                </div>
+                <div class="form-group">
+                    <label for="editProductIp">所属IP</label>
+                    <input type="text" id="editProductIp" name="editProductIp" required value="IP1">
+                </div>
+                <div class="form-group">
+                    <label for="editSalesCount">销售个数</label>
+                    <input type="number" id="editSalesCount" name="editSalesCount" required value="1820">
+                </div>
+                <div class="form-group">
+                    <label for="editBuyerCount">购买人数</label>
+                    <input type="number" id="editBuyerCount" name="editBuyerCount" required value="1200">
+                </div>
+                <div class="form-group">
+                    <label for="editSalesAmount">销售额</label>
+                    <input type="number" id="editSalesAmount" name="editSalesAmount" required value="25000">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="data-manager.js"></script>
+    <script src="admin-script.js"></script>
+    <script>
+        // 文创产品管理页面特定的数据操作
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载文创产品数据
+            loadCulturalProductsData();
+        });
+        
+        // 加载文创产品数据到表格
+        function loadCulturalProductsData() {
+            const tbody = document.querySelector('#culturalProductsTable tbody');
+            if (!tbody) return;
+            
+            const data = DataManager.getCulturalProductsData();
+            tbody.innerHTML = data.map((item, index) => `
+                <tr data-index="${index}">
+                    <td>${item.name}</td>
+                    <td>${item.ip}</td>
+                    <td>${item.sales}</td>
+                    <td>${item.buyers}</td>
+                    <td>¥${item.amount.toLocaleString()}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn btn-success" onclick="editCulturalProduct(${index})">编辑</button>
+                            <button class="action-btn btn-danger" onclick="deleteCulturalProduct(${index})">删除</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        // 添加文创产品
+        function addCulturalProduct(name, ip, sales, buyers, amount) {
+            const data = DataManager.getCulturalProductsData();
+            data.push({ 
+                name, 
+                ip, 
+                sales: parseInt(sales), 
+                buyers: parseInt(buyers), 
+                amount: parseFloat(amount) 
+            });
+            DataManager.setCulturalProductsData(data);
+            loadCulturalProductsData();
+        }
+        
+        // 编辑文创产品
+        function editCulturalProduct(index) {
+            const data = DataManager.getCulturalProductsData();
+            const item = data[index];
+            document.getElementById('editProductName').value = item.name;
+            document.getElementById('editProductIp').value = item.ip;
+            document.getElementById('editSalesCount').value = item.sales;
+            document.getElementById('editBuyerCount').value = item.buyers;
+            document.getElementById('editSalesAmount').value = item.amount;
+            document.getElementById('editCulturalProductModal').classList.add('active');
+            document.getElementById('editCulturalProductModal').dataset.editIndex = index;
+        }
+        
+        // 更新文创产品
+        function updateCulturalProduct(index, name, ip, sales, buyers, amount) {
+            const data = DataManager.getCulturalProductsData();
+            data[index] = { 
+                name, 
+                ip, 
+                sales: parseInt(sales), 
+                buyers: parseInt(buyers), 
+                amount: parseFloat(amount) 
+            };
+            DataManager.setCulturalProductsData(data);
+            loadCulturalProductsData();
+        }
+        
+        // 删除文创产品
+        function deleteCulturalProduct(index) {
+            if (confirm('确定要删除这条数据吗？')) {
+                const data = DataManager.getCulturalProductsData();
+                data.splice(index, 1);
+                DataManager.setCulturalProductsData(data);
+                loadCulturalProductsData();
+            }
+        }
+        
+        // 表单提交处理
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加文创产品表单
+            const addCulturalProductForm = document.querySelector('#addCulturalProductModal form');
+            if (addCulturalProductForm) {
+                addCulturalProductForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('productName').value;
+                    const ip = document.getElementById('productIp').value;
+                    const sales = document.getElementById('salesCount').value;
+                    const buyers = document.getElementById('buyerCount').value;
+                    const amount = document.getElementById('salesAmount').value;
+                    addCulturalProduct(name, ip, sales, buyers, amount);
+                    this.reset();
+                    document.getElementById('addCulturalProductModal').classList.remove('active');
+                });
+            }
+            
+            // 编辑文创产品表单
+            const editCulturalProductForm = document.querySelector('#editCulturalProductModal form');
+            if (editCulturalProductForm) {
+                editCulturalProductForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const index = document.getElementById('editCulturalProductModal').dataset.editIndex;
+                    const name = document.getElementById('editProductName').value;
+                    const ip = document.getElementById('editProductIp').value;
+                    const sales = document.getElementById('editSalesCount').value;
+                    const buyers = document.getElementById('editBuyerCount').value;
+                    const amount = document.getElementById('editSalesAmount').value;
+                    updateCulturalProduct(index, name, ip, sales, buyers, amount);
+                    document.getElementById('editCulturalProductModal').classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

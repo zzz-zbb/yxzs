@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专题看板 - 数字文旅驾驶舱</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>数字文旅驾驶舱</h3>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item active">
+                    <a href="dashboard.html">专题看板</a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin.html">核心指标管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#">IP效能管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#">文创产品管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#">重点文物管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#">智慧商圈管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#">客流统计管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#">消费分析管理</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 顶部导航栏 -->
+            <div class="top-nav">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <h2>专题看板</h2>
+                    <a href="index.html" class="btn btn-primary">查看驾驶舱</a>
+                </div>
+                <div class="user-info">
+                    <span>管理员</span>
+                    <button class="logout-btn">登出</button>
+                </div>
+            </div>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <h1 class="page-title">数字文旅数据统计分析</h1>
+                
+                <!-- 核心指标概览 -->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h4>核心IP数</h4>
+                        <div class="chart-container">
+                            <canvas id="ipTrendChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h4>重点文物数</h4>
+                        <div class="chart-container">
+                            <canvas id="relicsTrendChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h4>日均人数</h4>
+                        <div class="chart-container">
+                            <canvas id="visitorTrendChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h4>文创产品数</h4>
+                        <div class="chart-container">
+                            <canvas id="productsTrendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 销售统计 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>文创产品销售统计</h3>
+                    </div>
+                    <div class="chart-container" style="height: 400px;">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- 数据表格 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>核心数据明细</h3>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>指标名称</th>
+                                <th>当前值</th>
+                                <th>上月值</th>
+                                <th>同比增长</th>
+                                <th>趋势</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>核心IP数</td>
+                                <td>15</td>
+                                <td>14</td>
+                                <td>+7.14%</td>
+                                <td>上升</td>
+                            </tr>
+                            <tr>
+                                <td>重点文物数</td>
+                                <td>89</td>
+                                <td>87</td>
+                                <td>+2.30%</td>
+                                <td>上升</td>
+                            </tr>
+                            <tr>
+                                <td>日均人数</td>
+                                <td>1.28万</td>
+                                <td>1.20万</td>
+                                <td>+6.67%</td>
+                                <td>上升</td>
+                            </tr>
+                            <tr>
+                                <td>文创产品数</td>
+                                <td>98个</td>
+                                <td>90个</td>
+                                <td>+8.89%</td>
+                                <td>上升</td>
+                            </tr>
+                            <tr>
+                                <td>商户数量</td>
+                                <td>1.28万</td>
+                                <td>1.25万</td>
+                                <td>+2.40%</td>
+                                <td>上升</td>
+                            </tr>
+                            <tr>
+                                <td>线上覆盖率</td>
+                                <td>98%</td>
+                                <td>95%</td>
+                                <td>+3.16%</td>
+                                <td>上升</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="admin-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP效能管理 - 数字文旅驾驶舱</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>数字文旅驾驶舱</h3>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="dashboard.html">专题看板</a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin.html">核心指标管理</a>
+                </div>
+                <div class="nav-item active">
+                    <a href="ip-management.html">IP效能管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultural-products-management.html">文创产品管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultural-relics-management.html">重点文物管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="smart-business-management.html">智慧商圈管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="visitor-management.html">客流统计管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="consumption-management.html">消费分析管理</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 顶部导航栏 -->
+            <div class="top-nav">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <h2>IP效能管理</h2>
+                    <a href="index.html" class="btn btn-primary">查看驾驶舱</a>
+                </div>
+                <div class="user-info">
+                    <span>管理员</span>
+                    <button class="logout-btn">登出</button>
+                </div>
+            </div>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- IP授权收入管理 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>IP授权收入管理</h3>
+                        <button class="btn btn-primary" data-modal="addIpRevenueModal">添加IP授权收入</button>
+                    </div>
+                    <table class="data-table" id="ipRevenueTable">
+                        <thead>
+                            <tr>
+                                <th>IP名称</th>
+                                <th>授权收入（万元）</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IP1</td>
+                                <td>500</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editIpRevenueModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IP2</td>
+                                <td>350</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editIpRevenueModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IP3</td>
+                                <td>200</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editIpRevenueModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IP4</td>
+                                <td>120</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editIpRevenueModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IP5</td>
+                                <td>50</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editIpRevenueModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- IP传播影响力管理 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>IP传播影响力管理</h3>
+                        <button class="btn btn-primary" data-modal="addIpInfluenceModal">添加传播渠道</button>
+                    </div>
+                    <table class="data-table" id="ipInfluenceTable">
+                        <thead>
+                            <tr>
+                                <th>传播渠道</th>
+                                <th>占比（%）</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>社交媒体</td>
+                                <td>35</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editIpInfluenceModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>短视频</td>
+                                <td>25</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editIpInfluenceModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>新闻报道</td>
+                                <td>20</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editIpInfluenceModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>线下活动</td>
+                                <td>15</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editIpInfluenceModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>其他</td>
+                                <td>5</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editIpInfluenceModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 添加IP授权收入模态框 -->
+    <div class="modal" id="addIpRevenueModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加IP授权收入</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="ipName">IP名称</label>
+                    <input type="text" id="ipName" name="ipName" required placeholder="请输入IP名称">
+                </div>
+                <div class="form-group">
+                    <label for="ipRevenue">授权收入（万元）</label>
+                    <input type="number" id="ipRevenue" name="ipRevenue" required placeholder="请输入授权收入">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 编辑IP授权收入模态框 -->
+    <div class="modal" id="editIpRevenueModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑IP授权收入</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="editIpName">IP名称</label>
+                    <input type="text" id="editIpName" name="editIpName" required value="IP1">
+                </div>
+                <div class="form-group">
+                    <label for="editIpRevenue">授权收入（万元）</label>
+                    <input type="number" id="editIpRevenue" name="editIpRevenue" required value="500">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 添加IP传播影响力模态框 -->
+    <div class="modal" id="addIpInfluenceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加传播渠道</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="channelName">传播渠道</label>
+                    <input type="text" id="channelName" name="channelName" required placeholder="请输入传播渠道">
+                </div>
+                <div class="form-group">
+                    <label for="channelPercentage">占比（%）</label>
+                    <input type="number" id="channelPercentage" name="channelPercentage" required placeholder="请输入占比">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 编辑IP传播影响力模态框 -->
+    <div class="modal" id="editIpInfluenceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑传播渠道</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="editChannelName">传播渠道</label>
+                    <input type="text" id="editChannelName" name="editChannelName" required value="社交媒体">
+                </div>
+                <div class="form-group">
+                    <label for="editChannelPercentage">占比（%）</label>
+                    <input type="number" id="editChannelPercentage" name="editChannelPercentage" required value="35">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="data-manager.js"></script>
+    <script src="admin-script.js"></script>
+    <script>
+        // IP效能管理页面特定的数据操作
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载IP授权收入数据
+            loadIpRevenueData();
+            // 加载IP传播影响力数据
+            loadIpInfluenceData();
+        });
+        
+        // 加载IP授权收入数据到表格
+        function loadIpRevenueData() {
+            const tbody = document.querySelector('#ipRevenueTable tbody');
+            if (!tbody) return;
+            
+            const data = DataManager.getIpRevenueData();
+            tbody.innerHTML = data.map((item, index) => `
+                <tr data-index="${index}">
+                    <td>${item.name}</td>
+                    <td>${item.revenue}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn btn-success" onclick="editIpRevenue(${index})">编辑</button>
+                            <button class="action-btn btn-danger" onclick="deleteIpRevenue(${index})">删除</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        // 加载IP传播影响力数据到表格
+        function loadIpInfluenceData() {
+            const tbody = document.querySelector('#ipInfluenceTable tbody');
+            if (!tbody) return;
+            
+            const data = DataManager.getIpInfluenceData();
+            tbody.innerHTML = data.map((item, index) => `
+                <tr data-index="${index}">
+                    <td>${item.channel}</td>
+                    <td>${item.percentage}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn btn-success" onclick="editIpInfluence(${index})">编辑</button>
+                            <button class="action-btn btn-danger" onclick="deleteIpInfluence(${index})">删除</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        // 添加IP授权收入
+        function addIpRevenue(name, revenue) {
+            const data = DataManager.getIpRevenueData();
+            data.push({ name, revenue: parseFloat(revenue) });
+            DataManager.setIpRevenueData(data);
+            loadIpRevenueData();
+        }
+        
+        // 编辑IP授权收入
+        function editIpRevenue(index) {
+            const data = DataManager.getIpRevenueData();
+            const item = data[index];
+            document.getElementById('editIpName').value = item.name;
+            document.getElementById('editIpRevenue').value = item.revenue;
+            document.getElementById('editIpRevenueModal').classList.add('active');
+            document.getElementById('editIpRevenueModal').dataset.editIndex = index;
+        }
+        
+        // 更新IP授权收入
+        function updateIpRevenue(index, name, revenue) {
+            const data = DataManager.getIpRevenueData();
+            data[index] = { name, revenue: parseFloat(revenue) };
+            DataManager.setIpRevenueData(data);
+            loadIpRevenueData();
+        }
+        
+        // 删除IP授权收入
+        function deleteIpRevenue(index) {
+            if (confirm('确定要删除这条数据吗？')) {
+                const data = DataManager.getIpRevenueData();
+                data.splice(index, 1);
+                DataManager.setIpRevenueData(data);
+                loadIpRevenueData();
+            }
+        }
+        
+        // 添加IP传播影响力
+        function addIpInfluence(channel, percentage) {
+            const data = DataManager.getIpInfluenceData();
+            data.push({ channel, percentage: parseFloat(percentage) });
+            DataManager.setIpInfluenceData(data);
+            loadIpInfluenceData();
+        }
+        
+        // 编辑IP传播影响力
+        function editIpInfluence(index) {
+            const data = DataManager.getIpInfluenceData();
+            const item = data[index];
+            document.getElementById('editChannelName').value = item.channel;
+            document.getElementById('editChannelPercentage').value = item.percentage;
+            document.getElementById('editIpInfluenceModal').classList.add('active');
+            document.getElementById('editIpInfluenceModal').dataset.editIndex = index;
+        }
+        
+        // 更新IP传播影响力
+        function updateIpInfluence(index, channel, percentage) {
+            const data = DataManager.getIpInfluenceData();
+            data[index] = { channel, percentage: parseFloat(percentage) };
+            DataManager.setIpInfluenceData(data);
+            loadIpInfluenceData();
+        }
+        
+        // 删除IP传播影响力
+        function deleteIpInfluence(index) {
+            if (confirm('确定要删除这条数据吗？')) {
+                const data = DataManager.getIpInfluenceData();
+                data.splice(index, 1);
+                DataManager.setIpInfluenceData(data);
+                loadIpInfluenceData();
+            }
+        }
+        
+        // 表单提交处理
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加IP授权收入表单
+            const addIpRevenueForm = document.querySelector('#addIpRevenueModal form');
+            if (addIpRevenueForm) {
+                addIpRevenueForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('ipName').value;
+                    const revenue = document.getElementById('ipRevenue').value;
+                    addIpRevenue(name, revenue);
+                    this.reset();
+                    document.getElementById('addIpRevenueModal').classList.remove('active');
+                });
+            }
+            
+            // 编辑IP授权收入表单
+            const editIpRevenueForm = document.querySelector('#editIpRevenueModal form');
+            if (editIpRevenueForm) {
+                editIpRevenueForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const index = document.getElementById('editIpRevenueModal').dataset.editIndex;
+                    const name = document.getElementById('editIpName').value;
+                    const revenue = document.getElementById('editIpRevenue').value;
+                    updateIpRevenue(index, name, revenue);
+                    document.getElementById('editIpRevenueModal').classList.remove('active');
+                });
+            }
+            
+            // 添加IP传播影响力表单
+            const addIpInfluenceForm = document.querySelector('#addIpInfluenceModal form');
+            if (addIpInfluenceForm) {
+                addIpInfluenceForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const channel = document.getElementById('channelName').value;
+                    const percentage = document.getElementById('channelPercentage').value;
+                    addIpInfluence(channel, percentage);
+                    this.reset();
+                    document.getElementById('addIpInfluenceModal').classList.remove('active');
+                });
+            }
+            
+            // 编辑IP传播影响力表单
+            const editIpInfluenceForm = document.querySelector('#editIpInfluenceModal form');
+            if (editIpInfluenceForm) {
+                editIpInfluenceForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const index = document.getElementById('editIpInfluenceModal').dataset.editIndex;
+                    const channel = document.getElementById('editChannelName').value;
+                    const percentage = document.getElementById('editChannelPercentage').value;
+                    updateIpInfluence(index, channel, percentage);
+                    document.getElementById('editIpInfluenceModal').classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

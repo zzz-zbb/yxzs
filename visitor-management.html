@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>客流统计管理 - 数字文旅驾驶舱</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>数字文旅驾驶舱</h3>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="dashboard.html">专题看板</a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin.html">核心指标管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="ip-management.html">IP效能管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultural-products-management.html">文创产品管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultural-relics-management.html">重点文物管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="smart-business-management.html">智慧商圈管理</a>
+                </div>
+                <div class="nav-item active">
+                    <a href="visitor-management.html">客流统计管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="consumption-management.html">消费分析管理</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 顶部导航栏 -->
+            <div class="top-nav">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <h2>客流统计管理</h2>
+                    <a href="index.html" class="btn btn-primary">查看驾驶舱</a>
+                </div>
+                <div class="user-info">
+                    <span>管理员</span>
+                    <button class="logout-btn">登出</button>
+                </div>
+            </div>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- 客流统计管理 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>客流统计管理</h3>
+                        <button class="btn btn-primary" data-modal="addVisitorStatModal">添加客流统计</button>
+                    </div>
+                    <table class="data-table" id="visitorTable">
+                        <thead>
+                            <tr>
+                                <th>星期</th>
+                                <th>日均人数</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>周一</td>
+                                <td>8500</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editVisitorStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>周二</td>
+                                <td>9200</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editVisitorStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>周三</td>
+                                <td>8800</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editVisitorStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>周四</td>
+                                <td>10500</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editVisitorStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>周五</td>
+                                <td>12800</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editVisitorStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>周六</td>
+                                <td>18500</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editVisitorStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>周日</td>
+                                <td>16200</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editVisitorStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 添加客流统计模态框 -->
+    <div class="modal" id="addVisitorStatModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加客流统计</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="weekday">星期</label>
+                    <select id="weekday" name="weekday" required>
+                        <option value="周一">周一</option>
+                        <option value="周二">周二</option>
+                        <option value="周三">周三</option>
+                        <option value="周四">周四</option>
+                        <option value="周五">周五</option>
+                        <option value="周六">周六</option>
+                        <option value="周日">周日</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="visitorCount">日均人数</label>
+                    <input type="number" id="visitorCount" name="visitorCount" required placeholder="请输入日均人数">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 编辑客流统计模态框 -->
+    <div class="modal" id="editVisitorStatModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑客流统计</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="editWeekday">星期</label>
+                    <select id="editWeekday" name="editWeekday" required>
+                        <option value="周一" selected>周一</option>
+                        <option value="周二">周二</option>
+                        <option value="周三">周三</option>
+                        <option value="周四">周四</option>
+                        <option value="周五">周五</option>
+                        <option value="周六">周六</option>
+                        <option value="周日">周日</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editVisitorCount">日均人数</label>
+                    <input type="number" id="editVisitorCount" name="editVisitorCount" required value="8500">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="data-manager.js"></script>
+    <script src="admin-script.js"></script>
+    <script>
+        // 客流统计管理页面特定的数据操作
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载客流统计数据
+            loadVisitorData();
+        });
+
+        // 加载客流统计数据到表格
+        function loadVisitorData() {
+            const tbody = document.querySelector('#visitorTable tbody');
+            if (!tbody) return;
+
+            const data = DataManager.getVisitorData();
+            tbody.innerHTML = data.map((item, index) => `
+                <tr data-index="${index}">
+                    <td>${item.day}</td>
+                    <td>${item.count.toLocaleString()}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn btn-success" onclick="editVisitor(${index})">编辑</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // 编辑客流统计
+        function editVisitor(index) {
+            const data = DataManager.getVisitorData();
+            const item = data[index];
+            document.getElementById('editWeekday').value = item.day;
+            document.getElementById('editVisitorCount').value = item.count;
+            document.getElementById('editVisitorStatModal').classList.add('active');
+            document.getElementById('editVisitorStatModal').dataset.editIndex = index;
+        }
+
+        // 更新客流统计
+        function updateVisitor(index, day, count) {
+            const data = DataManager.getVisitorData();
+            data[index] = { day, count: parseInt(count) };
+            DataManager.setVisitorData(data);
+            loadVisitorData();
+        }
+
+        // 表单提交处理
+        document.addEventListener('DOMContentLoaded', function() {
+            // 编辑客流统计表单
+            const editVisitorForm = document.querySelector('#editVisitorStatModal form');
+            if (editVisitorForm) {
+                editVisitorForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const index = document.getElementById('editVisitorStatModal').dataset.editIndex;
+                    const day = document.getElementById('editWeekday').value;
+                    const count = document.getElementById('editVisitorCount').value;
+                    updateVisitor(index, day, count);
+                    document.getElementById('editVisitorStatModal').classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

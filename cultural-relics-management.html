@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重点文物管理 - 数字文旅驾驶舱</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>数字文旅驾驶舱</h3>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="dashboard.html">专题看板</a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin.html">核心指标管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="ip-management.html">IP效能管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultural-products-management.html">文创产品管理</a>
+                </div>
+                <div class="nav-item active">
+                    <a href="cultural-relics-management.html">重点文物管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="smart-business-management.html">智慧商圈管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="visitor-management.html">客流统计管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="consumption-management.html">消费分析管理</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 顶部导航栏 -->
+            <div class="top-nav">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <h2>重点文物管理</h2>
+                    <a href="index.html" class="btn btn-primary">查看驾驶舱</a>
+                </div>
+                <div class="user-info">
+                    <span>管理员</span>
+                    <button class="logout-btn">登出</button>
+                </div>
+            </div>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- 重点文物监测管理 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>重点文物监测管理</h3>
+                        <button class="btn btn-primary" data-modal="addCulturalRelicModal">添加重点文物</button>
+                    </div>
+                    <table class="data-table" id="culturalRelicsTable">
+                        <thead>
+                            <tr>
+                                <th>文物名称</th>
+                                <th>监测指数</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>文物1</td>
+                                <td>95</td>
+                                <td>良好</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editCulturalRelicModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>文物2</td>
+                                <td>88</td>
+                                <td>良好</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editCulturalRelicModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>文物3</td>
+                                <td>92</td>
+                                <td>良好</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editCulturalRelicModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>文物4</td>
+                                <td>78</td>
+                                <td>需关注</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editCulturalRelicModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>文物5</td>
+                                <td>90</td>
+                                <td>良好</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editCulturalRelicModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 添加重点文物模态框 -->
+    <div class="modal" id="addCulturalRelicModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加重点文物</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="relicName">文物名称</label>
+                    <input type="text" id="relicName" name="relicName" required placeholder="请输入文物名称">
+                </div>
+                <div class="form-group">
+                    <label for="monitoringIndex">监测指数</label>
+                    <input type="number" id="monitoringIndex" name="monitoringIndex" required placeholder="请输入监测指数">
+                </div>
+                <div class="form-group">
+                    <label for="status">状态</label>
+                    <select id="status" name="status" required>
+                        <option value="良好">良好</option>
+                        <option value="需关注">需关注</option>
+                        <option value="警告">警告</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 编辑重点文物模态框 -->
+    <div class="modal" id="editCulturalRelicModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑重点文物</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="editRelicName">文物名称</label>
+                    <input type="text" id="editRelicName" name="editRelicName" required value="文物1">
+                </div>
+                <div class="form-group">
+                    <label for="editMonitoringIndex">监测指数</label>
+                    <input type="number" id="editMonitoringIndex" name="editMonitoringIndex" required value="95">
+                </div>
+                <div class="form-group">
+                    <label for="editStatus">状态</label>
+                    <select id="editStatus" name="editStatus" required>
+                        <option value="良好" selected>良好</option>
+                        <option value="需关注">需关注</option>
+                        <option value="警告">警告</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="data-manager.js"></script>
+    <script src="admin-script.js"></script>
+    <script>
+        // 重点文物管理页面特定的数据操作
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载重点文物数据
+            loadCulturalRelicsData();
+        });
+
+        // 获取状态文本
+        function getStatusText(index) {
+            if (index >= 90) return '良好';
+            if (index >= 80) return '需关注';
+            return '警告';
+        }
+
+        // 加载重点文物数据到表格
+        function loadCulturalRelicsData() {
+            const tbody = document.querySelector('#culturalRelicsTable tbody');
+            if (!tbody) return;
+
+            const data = DataManager.getCulturalRelicsData();
+            tbody.innerHTML = data.map((item, index) => `
+                <tr data-index="${index}">
+                    <td>${item.name}</td>
+                    <td>${item.index}</td>
+                    <td>${getStatusText(item.index)}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn btn-success" onclick="editCulturalRelic(${index})">编辑</button>
+                            <button class="action-btn btn-danger" onclick="deleteCulturalRelic(${index})">删除</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // 添加重点文物
+        function addCulturalRelic(name, index) {
+            const data = DataManager.getCulturalRelicsData();
+            data.push({
+                name,
+                index: parseInt(index)
+            });
+            DataManager.setCulturalRelicsData(data);
+            loadCulturalRelicsData();
+        }
+
+        // 编辑重点文物
+        function editCulturalRelic(index) {
+            const data = DataManager.getCulturalRelicsData();
+            const item = data[index];
+            document.getElementById('editRelicName').value = item.name;
+            document.getElementById('editMonitoringIndex').value = item.index;
+            document.getElementById('editCulturalRelicModal').classList.add('active');
+            document.getElementById('editCulturalRelicModal').dataset.editIndex = index;
+        }
+
+        // 更新重点文物
+        function updateCulturalRelic(index, name, indexValue) {
+            const data = DataManager.getCulturalRelicsData();
+            data[index] = {
+                name,
+                index: parseInt(indexValue)
+            };
+            DataManager.setCulturalRelicsData(data);
+            loadCulturalRelicsData();
+        }
+
+        // 删除重点文物
+        function deleteCulturalRelic(index) {
+            if (confirm('确定要删除这条数据吗？')) {
+                const data = DataManager.getCulturalRelicsData();
+                data.splice(index, 1);
+                DataManager.setCulturalRelicsData(data);
+                loadCulturalRelicsData();
+            }
+        }
+
+        // 表单提交处理
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加重点文物表单
+            const addCulturalRelicForm = document.querySelector('#addCulturalRelicModal form');
+            if (addCulturalRelicForm) {
+                addCulturalRelicForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('relicName').value;
+                    const index = document.getElementById('monitoringIndex').value;
+                    addCulturalRelic(name, index);
+                    this.reset();
+                    document.getElementById('addCulturalRelicModal').classList.remove('active');
+                });
+            }
+
+            // 编辑重点文物表单
+            const editCulturalRelicForm = document.querySelector('#editCulturalRelicModal form');
+            if (editCulturalRelicForm) {
+                editCulturalRelicForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const index = document.getElementById('editCulturalRelicModal').dataset.editIndex;
+                    const name = document.getElementById('editRelicName').value;
+                    const indexValue = document.getElementById('editMonitoringIndex').value;
+                    updateCulturalRelic(index, name, indexValue);
+                    document.getElementById('editCulturalRelicModal').classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

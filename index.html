@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字文旅驾驶舱</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- 文创产品销量模态框 -->
+    <div id="culturalProductsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>文创产品销量</h2>
+                <span class="close" onclick="closeCulturalProductsModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="chart-container" style="height: 400px;">
+                    <canvas id="culturalProductsDualChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 商圈月均消费金额模态框 -->
+    <div id="businessDistrictModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>商圈月均消费金额</h2>
+                <span class="close" onclick="closeBusinessDistrictModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="chart-container" style="height: 400px;">
+                    <canvas id="businessDistrictChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载动画 -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+    <div class="dashboard-container fade-in">
+        <header class="dashboard-header fade-in">
+            <h1>数字文旅驾驶舱</h1>
+            <div class="header-info">
+                <a href="login.html" class="admin-btn">查看管理后台</a>
+                <span class="date-time" id="dateTime"></span>
+            </div>
+        </header>
+        
+        <div class="dashboard-content">
+            <!-- 左侧数字文化模块 -->
+            <div class="dashboard-section left-section fade-in">
+                <h2>数字文化</h2>
+                
+                <!-- 核心指标 -->
+                <div class="metric-card fade-in">
+                    <div class="metric-item">
+                        <h3><i class="icon">🏛️</i> 核心IP数 <span class="metric-value">15</span></h3>
+                    </div>
+                    <div class="metric-item">
+                        <h3><i class="icon">📜</i> 重点文物数 <span class="metric-value">89</span></h3>
+                    </div>
+                </div>
+                
+                <!-- IP效能和文创产品 -->
+                <div class="chart-row">
+                    <div class="chart-card fade-in">
+                        <h3>IP效能</h3>
+                        <div class="chart-container">
+                            <canvas id="ipRevenueChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="ipInfluenceChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card fade-in">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h3>文创产品</h3>
+                            <button class="more-btn" onclick="openCulturalProductsModal()">更多</button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="culturalProductsChart"></canvas>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>文创名称</th>
+                                        <th>所属IP</th>
+                                        <th>销售个数</th>
+                                        <th>购买人数</th>
+                                        <th>销售额</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>IP1产品A</td>
+                                        <td>IP1</td>
+                                        <td>1820</td>
+                                        <td>1200</td>
+                                        <td>¥25,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IP2产品B</td>
+                                        <td>IP2</td>
+                                        <td>1250</td>
+                                        <td>980</td>
+                                        <td>¥18,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IP3产品C</td>
+                                        <td>IP3</td>
+                                        <td>980</td>
+                                        <td>850</td>
+                                        <td>¥12,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IP4产品D</td>
+                                        <td>IP4</td>
+                                        <td>820</td>
+                                        <td>720</td>
+                                        <td>¥9,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IP5产品E</td>
+                                        <td>IP5</td>
+                                        <td>750</td>
+                                        <td>680</td>
+                                        <td>¥8,200</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 重点文物监测和直播活动 -->
+                <div class="chart-row">
+                    <div class="chart-card fade-in">
+                        <h3>重点文物监测</h3>
+                        <div class="chart-container">
+                            <canvas id="culturalRelicsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card fade-in">
+                        <h3>直播活动</h3>
+                        <div class="live-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">景点直播</span>
+                                <span class="stat-value">2.5万</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">观看人次</span>
+                                <span class="stat-value">100万+</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">景点直播</span>
+                                <span class="stat-value">69%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">文化活动</span>
+                                <span class="stat-value">29%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 中间地图展示模块 -->
+            <div class="dashboard-section center-section fade-in">
+                <h2>旅游景点分布</h2>
+                <div class="map-container">
+                    <div class="map-background">
+                        <div class="map-point" style="top: 30%; left: 40%;"></div>
+                        <div class="map-point" style="top: 50%; left: 60%;"></div>
+                        <div class="map-point" style="top: 70%; left: 30%;"></div>
+                        <div class="map-point" style="top: 40%; left: 70%;"></div>
+                        <div class="map-point" style="top: 60%; left: 50%;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 右侧数字旅游模块 -->
+            <div class="dashboard-section right-section fade-in">
+                <h2>数字旅游</h2>
+                
+                <!-- 核心指标 -->
+                <div class="metric-card fade-in">
+                    <div class="metric-item">
+                        <h3><i class="icon">👥</i> 日均人数 <span class="metric-value">1.28万</span></h3>
+                    </div>
+                    <div class="metric-item">
+                        <h3><i class="icon">🎨</i> 文创产品数 <span class="metric-value">98个</span></h3>
+                    </div>
+                </div>
+                
+                <!-- 智慧商圈和客流统计分析 -->
+                <div class="chart-row">
+                    <div class="chart-card fade-in">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h3>智慧商圈</h3>
+                            <button class="more-btn" onclick="openBusinessDistrictModal()">更多</button>
+                        </div>
+                        <div class="商圈-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">商户数量</span>
+                                <span class="stat-value">1.28万</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">线上覆盖率</span>
+                                <span class="stat-value">98%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">月销售额</span>
+                                <span class="stat-value">¥2.5M</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">控制中心A</span>
+                                <span class="stat-value">96%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-card fade-in">
+                        <h3>客流统计分析</h3>
+                        <div class="chart-container">
+                            <canvas id="visitorChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 消费分析和数字文创产品 -->
+                <div class="chart-row">
+                    <div class="chart-card fade-in">
+                        <h3>消费分析</h3>
+                        <div class="chart-container">
+                            <canvas id="consumptionChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card fade-in">
+                        <h3>数字文创产品</h3>
+                        <div class="chart-container">
+                            <canvas id="digitalProductsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 文创产品销量模态框 -->
+    <div id="culturalProductsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>文创产品销量</h2>
+                <span class="close" onclick="closeCulturalProductsModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="chart-container" style="height: 400px;">
+                    <canvas id="culturalProductsDualChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

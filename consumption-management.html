@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消费分析管理 - 数字文旅驾驶舱</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>数字文旅驾驶舱</h3>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="dashboard.html">专题看板</a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin.html">核心指标管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="ip-management.html">IP效能管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultural-products-management.html">文创产品管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultural-relics-management.html">重点文物管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="smart-business-management.html">智慧商圈管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="visitor-management.html">客流统计管理</a>
+                </div>
+                <div class="nav-item active">
+                    <a href="consumption-management.html">消费分析管理</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 顶部导航栏 -->
+            <div class="top-nav">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <h2>消费分析管理</h2>
+                    <a href="index.html" class="btn btn-primary">查看驾驶舱</a>
+                </div>
+                <div class="user-info">
+                    <span>管理员</span>
+                    <button class="logout-btn">登出</button>
+                </div>
+            </div>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- 消费分析管理 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>消费分析管理</h3>
+                        <button class="btn btn-primary" data-modal="addConsumptionStatModal">添加消费统计</button>
+                    </div>
+                    <table class="data-table" id="consumptionTable">
+                        <thead>
+                            <tr>
+                                <th>月份</th>
+                                <th>消费金额（万元）</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1月</td>
+                                <td>¥85</td>
+                                <td>¥1.2M</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editConsumptionStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2月</td>
+                                <td>¥92</td>
+                                <td>¥1.5M</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editConsumptionStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3月</td>
+                                <td>¥88</td>
+                                <td>¥1.3M</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editConsumptionStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4月</td>
+                                <td>¥95</td>
+                                <td>¥1.6M</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editConsumptionStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5月</td>
+                                <td>¥102</td>
+                                <td>¥1.8M</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editConsumptionStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6月</td>
+                                <td>¥98</td>
+                                <td>¥1.7M</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-success" data-modal="editConsumptionStatModal">编辑</button>
+                                        <button class="action-btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 添加消费统计模态框 -->
+    <div class="modal" id="addConsumptionStatModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加消费统计</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="month">月份</label>
+                    <select id="month" name="month" required>
+                        <option value="1月">1月</option>
+                        <option value="2月">2月</option>
+                        <option value="3月">3月</option>
+                        <option value="4月">4月</option>
+                        <option value="5月">5月</option>
+                        <option value="6月">6月</option>
+                        <option value="7月">7月</option>
+                        <option value="8月">8月</option>
+                        <option value="9月">9月</option>
+                        <option value="10月">10月</option>
+                        <option value="11月">11月</option>
+                        <option value="12月">12月</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="avgPrice">平均客单价</label>
+                    <input type="number" id="avgPrice" name="avgPrice" required placeholder="请输入平均客单价">
+                </div>
+                <div class="form-group">
+                    <label for="totalAmount">总消费额</label>
+                    <input type="text" id="totalAmount" name="totalAmount" required placeholder="请输入总消费额">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 编辑消费统计模态框 -->
+    <div class="modal" id="editConsumptionStatModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑消费统计</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="editMonth">月份</label>
+                    <select id="editMonth" name="editMonth" required>
+                        <option value="1月" selected>1月</option>
+                        <option value="2月">2月</option>
+                        <option value="3月">3月</option>
+                        <option value="4月">4月</option>
+                        <option value="5月">5月</option>
+                        <option value="6月">6月</option>
+                        <option value="7月">7月</option>
+                        <option value="8月">8月</option>
+                        <option value="9月">9月</option>
+                        <option value="10月">10月</option>
+                        <option value="11月">11月</option>
+                        <option value="12月">12月</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editConsumptionAmount">消费金额（万元）</label>
+                    <input type="number" id="editConsumptionAmount" name="editConsumptionAmount" step="0.1" required value="120">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="data-manager.js"></script>
+    <script src="admin-script.js"></script>
+    <script>
+        // 消费分析管理页面特定的数据操作
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载消费分析数据
+            loadConsumptionData();
+        });
+
+        // 加载消费分析数据到表格
+        function loadConsumptionData() {
+            const tbody = document.querySelector('#consumptionTable tbody');
+            if (!tbody) return;
+
+            const data = DataManager.getConsumptionData();
+            tbody.innerHTML = data.map((item, index) => `
+                <tr data-index="${index}">
+                    <td>${item.month}</td>
+                    <td>${item.amount}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn btn-success" onclick="editConsumption(${index})">编辑</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // 编辑消费分析
+        function editConsumption(index) {
+            const data = DataManager.getConsumptionData();
+            const item = data[index];
+            document.getElementById('editMonth').value = item.month;
+            document.getElementById('editConsumptionAmount').value = item.amount;
+            document.getElementById('editConsumptionStatModal').classList.add('active');
+            document.getElementById('editConsumptionStatModal').dataset.editIndex = index;
+        }
+
+        // 更新消费分析
+        function updateConsumption(index, month, amount) {
+            const data = DataManager.getConsumptionData();
+            data[index] = { month, amount: parseFloat(amount) };
+            DataManager.setConsumptionData(data);
+            loadConsumptionData();
+        }
+
+        // 表单提交处理
+        document.addEventListener('DOMContentLoaded', function() {
+            // 编辑消费分析表单
+            const editConsumptionForm = document.querySelector('#editConsumptionStatModal form');
+            if (editConsumptionForm) {
+                editConsumptionForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const index = document.getElementById('editConsumptionStatModal').dataset.editIndex;
+                    const month = document.getElementById('editMonth').value;
+                    const amount = document.getElementById('editConsumptionAmount').value;
+                    updateConsumption(index, month, amount);
+                    document.getElementById('editConsumptionStatModal').classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

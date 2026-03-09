@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧商圈管理 - 数字文旅驾驶舱</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>数字文旅驾驶舱</h3>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="dashboard.html">专题看板</a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin.html">核心指标管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="ip-management.html">IP效能管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultural-products-management.html">文创产品管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultural-relics-management.html">重点文物管理</a>
+                </div>
+                <div class="nav-item active">
+                    <a href="smart-business-management.html">智慧商圈管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="visitor-management.html">客流统计管理</a>
+                </div>
+                <div class="nav-item">
+                    <a href="consumption-management.html">消费分析管理</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 顶部导航栏 -->
+            <div class="top-nav">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <h2>智慧商圈管理</h2>
+                    <a href="index.html" class="btn btn-primary">查看驾驶舱</a>
+                </div>
+                <div class="user-info">
+                    <span>管理员</span>
+                    <button class="logout-btn">登出</button>
+                </div>
+            </div>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- 商圈核心指标管理 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>商圈核心指标管理</h3>
+                    </div>
+                    <div class="form-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 20px;">
+                        <div class="form-group">
+                            <label for="merchantCount">商户数量（万）</label>
+                            <input type="number" id="merchantCount" step="0.01" value="1.28">
+                        </div>
+                        <div class="form-group">
+                            <label for="onlineCoverage">线上覆盖率（%）</label>
+                            <input type="number" id="onlineCoverage" value="98">
+                        </div>
+                        <div class="form-group">
+                            <label for="monthlySales">月销售额（万元）</label>
+                            <input type="number" id="monthlySales" step="0.1" value="2.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="controlCenterA">控制中心A（%）</label>
+                            <input type="number" id="controlCenterA" value="96">
+                        </div>
+                    </div>
+                    <div style="padding: 0 20px 20px;">
+                        <button class="btn btn-primary" onclick="saveBusinessDistrictData()">保存指标</button>
+                    </div>
+                </div>
+
+                <!-- 每日消费金额管理 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>每日消费金额管理（万元）</h3>
+                        <button class="btn btn-primary" data-modal="addDailyConsumptionModal">添加每日消费</button>
+                    </div>
+                    <table class="data-table" id="dailyConsumptionTable">
+                        <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>消费金额（万元）</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 添加每日消费模态框 -->
+    <div class="modal" id="addDailyConsumptionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加每日消费</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="dayNumber">日期（日）</label>
+                    <input type="number" id="dayNumber" name="dayNumber" min="1" max="31" required placeholder="请输入日期（1-31）">
+                </div>
+                <div class="form-group">
+                    <label for="consumptionAmount">消费金额（万元）</label>
+                    <input type="number" id="consumptionAmount" name="consumptionAmount" step="0.1" required placeholder="请输入消费金额">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 编辑每日消费模态框 -->
+    <div class="modal" id="editDailyConsumptionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑每日消费</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="editDayNumber">日期（日）</label>
+                    <input type="number" id="editDayNumber" name="editDayNumber" min="1" max="31" required>
+                </div>
+                <div class="form-group">
+                    <label for="editConsumptionAmount">消费金额（万元）</label>
+                    <input type="number" id="editConsumptionAmount" name="editConsumptionAmount" step="0.1" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="data-manager.js"></script>
+    <script src="admin-script.js"></script>
+    <script>
+        // 智慧商圈管理页面特定的数据操作
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载商圈核心指标
+            loadBusinessDistrictData();
+            // 加载每日消费数据
+            loadDailyConsumptionData();
+        });
+
+        // 加载商圈核心指标
+        function loadBusinessDistrictData() {
+            const data = DataManager.getBusinessDistrictData();
+            document.getElementById('merchantCount').value = data.merchantCount;
+            document.getElementById('onlineCoverage').value = data.onlineCoverage;
+            document.getElementById('monthlySales').value = data.monthlySales;
+            document.getElementById('controlCenterA').value = data.controlCenterA;
+        }
+
+        // 保存商圈核心指标
+        function saveBusinessDistrictData() {
+            const data = {
+                merchantCount: parseFloat(document.getElementById('merchantCount').value),
+                onlineCoverage: parseInt(document.getElementById('onlineCoverage').value),
+                monthlySales: parseFloat(document.getElementById('monthlySales').value),
+                controlCenterA: parseInt(document.getElementById('controlCenterA').value)
+            };
+            DataManager.setBusinessDistrictData(data);
+            alert('商圈核心指标已保存');
+        }
+
+        // 加载每日消费数据到表格
+        function loadDailyConsumptionData() {
+            const tbody = document.querySelector('#dailyConsumptionTable tbody');
+            if (!tbody) return;
+
+            const data = DataManager.getDailyConsumptionData();
+            tbody.innerHTML = data.map((item, index) => `
+                <tr data-index="${index}">
+                    <td>${index + 1}日</td>
+                    <td>${item}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn btn-success" onclick="editDailyConsumption(${index})">编辑</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // 编辑每日消费
+        function editDailyConsumption(index) {
+            const data = DataManager.getDailyConsumptionData();
+            document.getElementById('editDayNumber').value = index + 1;
+            document.getElementById('editConsumptionAmount').value = data[index];
+            document.getElementById('editDailyConsumptionModal').classList.add('active');
+            document.getElementById('editDailyConsumptionModal').dataset.editIndex = index;
+        }
+
+        // 更新每日消费
+        function updateDailyConsumption(index, amount) {
+            const data = DataManager.getDailyConsumptionData();
+            data[index] = parseFloat(amount);
+            DataManager.setDailyConsumptionData(data);
+            loadDailyConsumptionData();
+        }
+
+        // 表单提交处理
+        document.addEventListener('DOMContentLoaded', function() {
+            // 编辑每日消费表单
+            const editDailyConsumptionForm = document.querySelector('#editDailyConsumptionModal form');
+            if (editDailyConsumptionForm) {
+                editDailyConsumptionForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const index = document.getElementById('editDailyConsumptionModal').dataset.editIndex;
+                    const amount = document.getElementById('editConsumptionAmount').value;
+                    updateDailyConsumption(index, amount);
+                    document.getElementById('editDailyConsumptionModal').classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
